@@ -44,6 +44,42 @@ class XmwsTarget
     }
 
     /**
+     * Return the Sentora server address.
+     * @return string
+     */
+    public function getServer()
+    {
+        return $this->server;
+    }
+
+    /**
+     * Return the username to use for the XMWS session.
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Return the password to use for the XMWS session.
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * Return the API key to use for the XMWS session.
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->key;
+    }
+
+    /**
      * Validates and formats the supplied Server address.
      * @param string $server The server name formatted like 'https://cp.domain.com'
      * @return string The formatted string (will remove any trailing slashes)
