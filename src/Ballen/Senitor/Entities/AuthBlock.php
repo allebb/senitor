@@ -1,8 +1,8 @@
 <?php namespace Ballen\Senitor\Entities;
 
-use Ballen\Senitor\Entities\XmwsTarget;
+use Ballen\Senitor\Entities\Target;
 
-class XmwsAuthBlock
+class AuthBlock
 {
 
     /**
@@ -11,7 +11,7 @@ class XmwsAuthBlock
      */
     private $target;
 
-    public function __construct(XmwsTarget $target)
+    public function __construct(Target $target)
     {
         $this->target = $target;
         $this->build();

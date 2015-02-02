@@ -1,6 +1,8 @@
 <?php namespace Ballen\Senitor\Entities;
 
-class XmwsTarget
+use Ballen\Senitor\Entities\AuthBlock;
+
+class Target
 {
 
     /**
@@ -77,6 +79,15 @@ class XmwsTarget
     public function getApiKey()
     {
         return $this->key;
+    }
+
+    /**
+     * Return the AuthBlock object
+     * @return \Ballen\Senitor\Entities\AuthBlock
+     */
+    public function getAuthBlock()
+    {
+       return new AuthBlock($this);
     }
 
     /**
