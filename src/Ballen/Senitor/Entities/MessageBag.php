@@ -8,7 +8,7 @@ class MessageBag
      * @var \Ballen\Senitor\Entities\MessageBag
      */
     protected static $instance = null;
-    
+
     /**
      * Item arry
      * @var type 
@@ -106,8 +106,10 @@ class MessageBag
     private function generateXml()
     {
         $xml_block = (string) null;
-        foreach ($this->items as $key => $item) {
-            $xml_block .= "<{$key}>$item</{$key}>";
+        if (!empty($this->items)) {
+            foreach ($this->items as $key => $item) {
+                $xml_block .= "<{$key}>$item</{$key}>";
+            }
         }
         $this->xml = $xml_block;
     }

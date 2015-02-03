@@ -29,11 +29,22 @@ class Senitor
     /**
      * Set credentials and server details.
      * @param Target $credentials
-     * @return Senitor
+     * @return \Ballen\Senitor\Senitor
      */
     public function setCredentials(Target $credentials)
     {
         $this->credentials = $credentials;
+        return $this;
+    }
+
+    /**
+     * Sets the XMWS API module
+     * @param string $module
+     * @return \Ballen\Senitor\Senitor
+     */
+    public function setModule($module)
+    {
+        $this->module = $module;
         return $this;
     }
 
@@ -44,6 +55,7 @@ class Senitor
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+        return $this;
     }
 
     /**
@@ -54,9 +66,6 @@ class Senitor
      */
     public function setRequestData($data = null)
     {
-        if (is_null($data)) {
-            throw new InvalidArgumentException("Request data cannot be null, an array or instance of Ballen\Senitor\Entities\MessageBag must be provided");
-        }
         if ($data instanceof MessageBag) {
             $this->data = $data;
         }
@@ -76,7 +85,7 @@ class Senitor
             $this->credentials, $this->module, $this->endpoint, $this->data), $this->getClientHeaders()
         );
         $response->send();
-        //$this->request = new \Ballen\Senitor\Entities\Transmission($target, $endpoint, $request);
+//$this->request = new \Ballen\Senitor\Entities\Transmission($target, $endpoint, $request);
     }
 
     /**
