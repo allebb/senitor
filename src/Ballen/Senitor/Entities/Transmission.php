@@ -23,7 +23,7 @@ class Transmission
             throw new \Ballen\Senitor\Exceptions\InvalidXmwsEndpoint("The XMWS endpoint cannot be empty/null.");
         }
         $this->target = $target;
-        $this->endpoint = $module;
+        $this->endpoint = $endpoint;
         $this->content = $request->getXml();
         $this->transmission = $this->buildXml($target, $request);
     }
