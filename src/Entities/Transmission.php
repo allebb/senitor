@@ -99,7 +99,7 @@ class Transmission
      * Output the generated XMWS message in XML format.
      * @return string
      */
-    private function __toString()
+    public function __toString()
     {
         return $this->transmission;
     }
