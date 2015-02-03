@@ -7,18 +7,25 @@ class Transmission
 {
 
     private $transmission;
-    
+    private $endpoint;
+    private $target;
     private $content;
 
     /**
      * Create a new transmission message (XMWS XML request)
      * @param \Ballen\Senitor\Entities\Target $target
+     * @param string $endpoint The endpoint action/request.
      * @param \Ballen\Senitor\Entities\MessageBag $request
      */
-    public function __construct(Target $target, MessageBag $request)
+    public function __construct(Target $target, $endpoint, MessageBag $request)
     {
+        if (is_empty($request)) {
+            throw new \Ballen\Senitor\Exceptions\InvalidXmwsEndpoint("The XMWS endpoint cannot be empty/null.");
+        }
+        $this->target = $target;
+        $this->endpoint = $module;
+        $this->content = $request->getXml();
         $this->transmission = $this->buildXml($target, $request);
-        $this->content = $request;
     }
 
     /**
@@ -27,18 +34,32 @@ class Transmission
      * @param \Ballen\Senitor\Entities\MessageBag $request
      * @return type
      */
-    private function buildXml(Target $target, MessageBag $request)
+    private function buildXml(Target $target)
     {
-        $auth_block = $target->getAuthBlock()->getXmlBlock();
         $xml = [
             '<?xml version="1.0" encoding="UTF-8"?>',
             '<xmws>',
-            $auth_block,
-            '<request>{ REQUEST METHOD TO BE ADDED HERE }</request>',
-            '<content>' .$this->content->. '</content>',
+            $this->getAuthBlockXml($target),
+            '<request>' . $this->getEndpoint() . '</request>',
+            '<content>' . $this->getContentXml() . '</content>',
             '</xmws>'
         ];
         return implode(PHP_EOL, $xml);
+    }
+
+    private function getAuthBlockXml(Target $target)
+    {
+        return $target->getAuthBlock()->getXmlBlock();
+    }
+
+    private function getContentXml()
+    {
+        return $this->content;
+    }
+
+    private function getEndpoint()
+    {
+        return $this->endpoint;
     }
 
     /**
