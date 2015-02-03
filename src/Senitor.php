@@ -72,7 +72,7 @@ class Senitor
         }
         if (is_array($data)) {
             $this->data = MessageBag::getInstance();
-            $data->setItems($data);
+            $this->data->setItems($data);
         }
         return $this;
     }

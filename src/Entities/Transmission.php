@@ -20,7 +20,7 @@ class Transmission
      */
     public function __construct(Target $target, $module, $endpoint, MessageBag $request)
     {
-        if (is_empty($request)) {
+        if (empty($request)) {
             throw new \Ballen\Senitor\Exceptions\InvalidXmwsEndpoint("The XMWS endpoint cannot be empty/null.");
         }
         $this->target = $target;

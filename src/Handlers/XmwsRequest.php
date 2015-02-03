@@ -71,8 +71,9 @@ class XmwsRequest
     /**
      * Sends the API request to the server and retrieves the response.
      */
-    private function send()
+    public function send()
     {
+        $this->initClient();
         $repsonse = $this->http_client->post($this->requestUri(), [
             'body' => $this->request_message,
             'allow_redirects' => true,
