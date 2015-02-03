@@ -7,6 +7,8 @@ class Transmission
 {
 
     private $transmission;
+    
+    private $content;
 
     /**
      * Create a new transmission message (XMWS XML request)
@@ -16,6 +18,7 @@ class Transmission
     public function __construct(Target $target, MessageBag $request)
     {
         $this->transmission = $this->buildXml($target, $request);
+        $this->content = $request;
     }
 
     /**
@@ -32,7 +35,7 @@ class Transmission
             '<xmws>',
             $auth_block,
             '<request>{ REQUEST METHOD TO BE ADDED HERE }</request>',
-            '<content>" . $this->data . "</content>',
+            '<content>' .$this->content->. '</content>',
             '</xmws>'
         ];
         return implode(PHP_EOL, $xml);
