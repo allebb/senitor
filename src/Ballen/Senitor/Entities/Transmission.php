@@ -7,6 +7,7 @@ class Transmission
 {
 
     private $transmission;
+    private $module;
     private $endpoint;
     private $target;
     private $content;
@@ -17,12 +18,13 @@ class Transmission
      * @param string $endpoint The endpoint action/request.
      * @param \Ballen\Senitor\Entities\MessageBag $request
      */
-    public function __construct(Target $target, $endpoint, MessageBag $request)
+    public function __construct(Target $target, $module, $endpoint, MessageBag $request)
     {
         if (is_empty($request)) {
             throw new \Ballen\Senitor\Exceptions\InvalidXmwsEndpoint("The XMWS endpoint cannot be empty/null.");
         }
         $this->target = $target;
+        $this->module = $module;
         $this->endpoint = $endpoint;
         $this->content = $request->getXml();
         $this->transmission = $this->buildXml($target, $request);
@@ -64,6 +66,15 @@ class Transmission
     private function getContentXml()
     {
         return $this->content;
+    }
+
+    /**
+     * Retrieve the module name of the request.
+     * @return string
+     */
+    public function getModule()
+    {
+        return $this->module;
     }
 
     /**

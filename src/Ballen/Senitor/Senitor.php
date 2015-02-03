@@ -1,7 +1,9 @@
 <?php namespace Ballen\Senitor;
 
-use Ballen\Senitor\Entities\Target;
 use Ballen\Senitor\Entities\MessageBag;
+use Ballen\Senitor\Entities\Target;
+use Ballen\Senitor\Handlers\XmwsRequest;
+use InvalidArgumentException;
 
 class Senitor
 {
@@ -10,7 +12,7 @@ class Senitor
 
     /**
      * The XMWS user/server credentials object
-     * @var \Ballen\Senitor\Entities\Target 
+     * @var Target 
      */
     protected $credentials;
     protected $module;
@@ -26,8 +28,8 @@ class Senitor
 
     /**
      * Set credentials and server details.
-     * @param \Ballen\Senitor\Entities\Target $credentials
-     * @return \Ballen\Senitor\Senitor
+     * @param Target $credentials
+     * @return Senitor
      */
     public function setCredentials(Target $credentials)
     {
@@ -46,14 +48,14 @@ class Senitor
 
     /**
      * Set request data to be sent with the XMWS request.
-     * @param \Ballen\Senitor\Entities\MessageBag $data
-     * @return \Ballen\Senitor\Senitor
-     * @throws \InvalidArgumentException
+     * @param MessageBag $data
+     * @return Senitor
+     * @throws InvalidArgumentException
      */
     public function setRequestData($data = null)
     {
         if (is_null($data)) {
-            throw new \InvalidArgumentException("Request data cannot be null, an array or instance of Ballen\Senitor\Entities\MessageBag must be provided");
+            throw new InvalidArgumentException("Request data cannot be null, an array or instance of Ballen\Senitor\Entities\MessageBag must be provided");
         }
         if ($data instanceof MessageBag) {
             $this->data = $data;
@@ -70,7 +72,11 @@ class Senitor
      */
     public final function send()
     {
-        $this->request = new \Ballen\Senitor\Entities\Transmission($target, $endpoint, $request);
+        $response = new XmwsRequest(new Transmission(
+            $this->credentials, $this->module, $this->endpoint, $this->data)
+        );
+        $response->send();
+        //$this->request = new \Ballen\Senitor\Entities\Transmission($target, $endpoint, $request);
     }
 
     /**
