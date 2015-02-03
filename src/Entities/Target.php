@@ -98,7 +98,7 @@ class Target
      */
     private function formatServerAddress($server)
     {
-        if (!(substr($server, 0, 7) == "http://") || (substr($server, 0, 8) == "https://")) {
+        if (!(substr($server, 0, 7) == "http://" || substr($server, 0, 8) == "https://")) {
             throw new \Ballen\Senitor\Exceptions\InvalidXmwsTargetAddress("The Sentora Server address you supplied (" . $server . ") is invalid, it must start with 'https://' or 'http://'.");
         }
         return rtrim($server, '/');
