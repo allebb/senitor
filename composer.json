@@ -1,0 +1,25 @@
+{
+    "name": "ballen/senitor",
+    "version": "1.0.0",
+    "description": "Senitor is a PHP API client for the Sentora Web Hosting Panel Web Service Layer (XMWS)",
+    "type": "library",
+    "keywords": ["sentora", "zpanel", "xmws"],
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Bobby Allen",
+            "email": "ballen@bobbyallen.me",
+            "homepage": "http://bobbyallen.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ballen\\Senitor\\": "src/"
+        }
+    }
+}
