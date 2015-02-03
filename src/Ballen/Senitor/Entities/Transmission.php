@@ -47,16 +47,29 @@ class Transmission
         return implode(PHP_EOL, $xml);
     }
 
+    /**
+     * Retrieve the generated XML XMWS authentication block
+     * @param \Ballen\Senitor\Entities\Target $target
+     * @return string
+     */
     private function getAuthBlockXml(Target $target)
     {
         return $target->getAuthBlock()->getXmlBlock();
     }
 
+    /**
+     * Retrieve the content "<content>" tags as generated XML.
+     * @return string
+     */
     private function getContentXml()
     {
         return $this->content;
     }
 
+    /**
+     * Retreieve the endpoint/action request.
+     * @return string
+     */
     private function getEndpoint()
     {
         return $this->endpoint;
