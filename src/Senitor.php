@@ -2,6 +2,7 @@
 
 use Ballen\Senitor\Entities\MessageBag;
 use Ballen\Senitor\Entities\Target;
+use Ballen\Senitor\Entities\Transmission;
 use Ballen\Senitor\Handlers\XmwsRequest;
 use InvalidArgumentException;
 
