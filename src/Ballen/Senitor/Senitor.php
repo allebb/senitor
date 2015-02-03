@@ -73,17 +73,31 @@ class Senitor
     public final function send()
     {
         $response = new XmwsRequest(new Transmission(
-            $this->credentials, $this->module, $this->endpoint, $this->data)
+            $this->credentials, $this->module, $this->endpoint, $this->data), $this->getClientHeaders()
         );
         $response->send();
         //$this->request = new \Ballen\Senitor\Entities\Transmission($target, $endpoint, $request);
     }
 
     /**
+     * Set some default HTTP client options.
+     * @return type
+     */
+    private function getClientHeaders()
+    {
+        return [
+            'headers' => [
+                'User-Agent' => 'senitor/' . $this->getSenitorVersion(),
+                'Accept' => 'application/xml',
+            ]
+        ];
+    }
+
+    /**
      * Return the version of the Senitor Client version (useful for feature checking)
      * @return string
      */
-    public final function getClientVersion()
+    public final function getSenitorVersion()
     {
         return (double) self::SENITOR_VERSION;
     }

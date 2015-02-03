@@ -69,6 +69,15 @@ class Transmission
     }
 
     /**
+     * Retrieve the Target XMWS host
+     * @return string
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
      * Retrieve the module name of the request.
      * @return string
      */
@@ -81,7 +90,7 @@ class Transmission
      * Retreieve the endpoint/action request.
      * @return string
      */
-    private function getEndpoint()
+    public function getEndpoint()
     {
         return $this->endpoint;
     }
