@@ -19,12 +19,25 @@ class Senitor
     protected $module;
     protected $endpoint;
     protected $data;
+    protected $optional_http_client_headers = [];
 
     public function __construct($credentials = null)
     {
         if ($credentials instanceof Target) {
             $this->credentials = $credentials;
         }
+    }
+
+    /**
+     * Set optional HTTP client headers for the Guzzle client
+     * @see http://guzzle.readthedocs.org/en/latest/clients.html#request-options
+     * @param array $options
+     * @return \Ballen\Senitor\Senitor
+     */
+    public function setHttpOptions(array $options)
+    {
+        $this->optional_http_client_headers = $options;
+        return $this;
     }
 
     /**
@@ -83,10 +96,9 @@ class Senitor
     public final function send()
     {
         $response = new XmwsRequest(new Transmission(
-            $this->credentials, $this->module, $this->endpoint, $this->data), $this->getClientHeaders()
+            $this->credentials, $this->module, $this->endpoint, $this->data), $this->getClientHeaders(), $this->optional_http_client_headers
         );
         $response->send();
-//$this->request = new \Ballen\Senitor\Entities\Transmission($target, $endpoint, $request);
     }
 
     /**
