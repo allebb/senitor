@@ -11,6 +11,18 @@ class XmwsResponse
      */
     protected $http_response_object;
 
+    /**
+     * The XMWS respsonse code
+     * @var string
+     */
+    protected $xmws_response_code;
+
+    /**
+     * The array of XML tags under the <content> tag.
+     * @var array
+     */
+    protected $xmws_content_array;
+
     public function __construct(HttpClientResponse $response)
     {
         $this->http_response_object = $response;
@@ -26,10 +38,26 @@ class XmwsResponse
         return $this->http_response_object;
     }
 
-
     private function checkErrors()
     {
-        // Lets check the XMWS response for standard error codes and throw
-        // exceptions for any that me may find.
+        $response_code = (int) $this->response()->xml()->response;
+        if (!isset($response_code)) {
+            die("No XMWS response code was found!");
+        }
+
+        switch ($response_code) {
+            case 1102:
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("The XMWS API module was not found on the target server.");
+            case 1103:
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("Server	API	key	validation	failed.");
+            case 1104:
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("User authentication	required but not provided.");
+            case 1105:
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("Username and password validation failed.");
+            case 1106:
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("Request	not	valid, XMWS is expecting some missing request tags.");
+            case 1107:
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("Modular	web	service	not	found for this module.");
+        }
     }
 }
