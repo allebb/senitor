@@ -10,10 +10,15 @@ class MessageBag
     protected static $instance = null;
 
     /**
-     * Item arry
-     * @var type 
+     * Item array
+     * @var array 
      */
-    private $items;
+    private $items = [];
+    
+    /**
+     * Generated XML tags with request data.
+     * @var string
+     */
     private $xml;
 
     protected function __construct()
