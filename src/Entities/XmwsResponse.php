@@ -38,11 +38,17 @@ class XmwsResponse
         return $this->http_response_object;
     }
 
+    /**
+     * Checks the response XML message for a specific error code and throw
+     * the associated XmwsErrorResponse exception.
+     * @throws \Ballen\Senitor\Exceptions\XmwsErrorResponse
+     * @return void
+     */
     private function checkErrors()
     {
         $response_code = (int) $this->response()->xml()->response;
         if (!isset($response_code)) {
-            die("No XMWS response code was found!");
+            throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("No XMWS response code was found!");
         }
 
         switch ($response_code) {
