@@ -96,14 +96,14 @@ class Senitor
     public final function send()
     {
         $response = new XmwsRequest(new Transmission(
-            $this->credentials, $this->module, $this->endpoint, $this->data), $this->getClientHeaders(), $this->optional_http_client_headers
+            $this->credentials, $this->module, $this->endpoint, $this->data), array_merge($this->getClientHeaders(), $this->optional_http_client_headers)
         );
         $response->send();
     }
 
     /**
      * Set some default HTTP client options.
-     * @return type
+     * @return array
      */
     private function getClientHeaders()
     {

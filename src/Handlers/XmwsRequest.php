@@ -27,9 +27,7 @@ class XmwsRequest
     public function __construct(Transmission $request, array $optional_headers = [])
     {
         $this->request_message = $request;
-        if (!is_null($optional_headers)) {
-            $this->setOptions($optional_headers);
-        }
+        $this->setOptions($optional_headers);
     }
 
     /**
@@ -73,15 +71,26 @@ class XmwsRequest
     }
 
     /**
+     * Merge all HTTP request options.
+     * @return array
+     */
+    private function requestOptions()
+    {
+        return array_merge_recursive([
+            'body' => $this->request_message,
+            'allow_redirects' => true,
+            ], $this->getOptions());
+    }
+
+    /**
      * Sends the API request to the server and retrieves the response.
      */
     public function send()
     {
         $this->initClient();
-        $repsonse = $this->http_client->post($this->requestUri(), [
-            'body' => $this->request_message,
-            'allow_redirects' => true,
-        ]);
-        die(var_dump($repsonse));
+        $repsonse = $this->http_client->post($this->requestUri(), $this->requestOptions());
+
+        // We now need to cast this into our XMWSResponse object...
+        echo $repsonse->getBody();
     }
 }
