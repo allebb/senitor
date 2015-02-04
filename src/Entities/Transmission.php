@@ -32,16 +32,15 @@ class Transmission
 
     /**
      * Build the transmission message XML
-     * @param \Ballen\Senitor\Entities\Target $target
      * @param \Ballen\Senitor\Entities\MessageBag $request
      * @return type
      */
-    private function buildXml(Target $target)
+    private function buildXml()
     {
         $xml = [
             '<?xml version="1.0" encoding="UTF-8"?>',
             '<xmws>',
-            $this->getAuthBlockXml($target),
+            $this->getAuthBlockXml($this->target),
             '<request>' . $this->getEndpoint() . '</request>',
             '<content>' . $this->getContentXml() . '</content>',
             '</xmws>'
@@ -54,9 +53,9 @@ class Transmission
      * @param \Ballen\Senitor\Entities\Target $target
      * @return string
      */
-    private function getAuthBlockXml(Target $target)
+    private function getAuthBlockXml()
     {
-        return $target->getAuthBlock()->getXmlBlock();
+        return $this->target->getAuthBlock();
     }
 
     /**
@@ -74,7 +73,7 @@ class Transmission
      */
     public function getTarget()
     {
-        return $this->target;
+        return $this->target->getServer();
     }
 
     /**

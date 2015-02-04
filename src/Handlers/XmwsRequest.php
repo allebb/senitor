@@ -8,7 +8,7 @@ class XmwsRequest
 
     /**
      * Guzzle HTTP client instance.
-     * @var type 
+     * @var \GuzzleHttp\Client
      */
     protected $http_client;
 
@@ -41,6 +41,10 @@ class XmwsRequest
         $this->options = $options;
     }
 
+    /**
+     * Get additonal options for the Guzzle client request.
+     * @return array
+     */
     private function getOptions()
     {
         return $this->options;

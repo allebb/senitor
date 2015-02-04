@@ -7,14 +7,13 @@ class AuthBlock
 
     /**
      * Object storage for XMWS Target Entity.
-     * @var type 
+     * @var \Ballen\Senitor\Entities\Target
      */
     private $target;
 
     public function __construct(Target $target)
     {
         $this->target = $target;
-        $this->build();
     }
 
     /**
@@ -43,5 +42,14 @@ class AuthBlock
             $xmlcontent .= "<{$ckey}>{$cvalue}</{$ckey}>" . PHP_EOL;
         }
         return $xmlcontent;
+    }
+
+    /**
+     * Returns the generated XML auth block tags.
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getXmlBlock();
     }
 }

@@ -87,7 +87,7 @@ class Target
      */
     public function getAuthBlock()
     {
-       return new AuthBlock($this);
+        return (new AuthBlock($this))->getXmlBlock();
     }
 
     /**
