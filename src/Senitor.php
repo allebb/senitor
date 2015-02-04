@@ -13,12 +13,33 @@ class Senitor
 
     /**
      * The XMWS user/server credentials object
-     * @var Target 
+     * @var \Ballen\Senitor\Entities\Target
      */
     protected $credentials;
+    
+    /**
+     * The XMWS Sentora module
+     * @var string 
+     */
     protected $module;
+    
+    /**
+     * The XMWS module action endpoint
+     * @var string
+     */
     protected $endpoint;
+    
+    /**
+     * The XMWS request data object
+     * @var type 
+     */
     protected $data;
+    
+    /**
+     * An optional array of Guzzle/cURL options.
+     * @see http://guzzle.readthedocs.org/en/latest/clients.html#request-options
+     * @var array
+     */
     protected $optional_http_client_headers = [];
 
     public function __construct($credentials = null)
