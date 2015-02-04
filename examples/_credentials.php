@@ -17,11 +17,11 @@ $sentora['user'] = 'username';
 /**
  * Your Sentora account password.
  */
-$session['pass'] = 'password';
+$sentora['pass'] = 'password';
 
 /**
  * The API key for your Sentora server.
  * If you've not yet set this, you can download and use 'gakekeeper' module
  * to set a new API key and view your current API key.
  */
-$session['apikey'] = 'a522c15698b4gb6a6ac851705037c6795a6bb300';
+$sentora['apikey'] = 'a522c15698b4gb6a6ac851705037c6795a6bb300';
