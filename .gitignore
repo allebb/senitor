@@ -1,5 +1,6 @@
 /nbproject
 /vendor
+/examples/_credentials.php
 composer.phar
 .DS_Store
 Thumbs.db
