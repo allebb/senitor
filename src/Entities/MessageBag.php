@@ -71,7 +71,7 @@ class MessageBag
     public function setRaw($data)
     {
         if (!is_string($data)) {
-            throw new \InvalidArgumentException("The expected format should be XML (string)");
+            throw new \InvalidArgumentException("The expected format should be an XML string.");
         }
         $this->items = $data;
         return $this;
