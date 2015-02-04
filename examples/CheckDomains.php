@@ -15,7 +15,7 @@ require_once '_credentials.php';
  */
 $xmws_session = new Senitor();
 
-$xmws_session->setCredentials(new Target($session['server'], $session['user'], $session['pass'], $session['apikey']))
+$xmws_session->setCredentials(new Target($sentora['server'], $sentora['user'], $sentora['pass'], $sentora['apikey']))
     ->setModule('domains')
     ->setEndpoint('GetAllDomains')
     ->setHttpOptions([
