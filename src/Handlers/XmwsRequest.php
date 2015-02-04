@@ -91,6 +91,6 @@ class XmwsRequest
         $repsonse = $this->http_client->post($this->requestUri(), $this->requestOptions());
 
         // We now need to cast this into our XMWSResponse object...
-        echo $repsonse->getBody();
+        return $repsonse->getBody();
     }
 }

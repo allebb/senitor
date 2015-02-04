@@ -16,31 +16,37 @@ class Senitor
      * @var \Ballen\Senitor\Entities\Target
      */
     protected $credentials;
-    
+
     /**
      * The XMWS Sentora module
      * @var string 
      */
     protected $module;
-    
+
     /**
      * The XMWS module action endpoint
      * @var string
      */
     protected $endpoint;
-    
+
     /**
      * The XMWS request data object
      * @var type 
      */
     protected $data;
-    
+
     /**
      * An optional array of Guzzle/cURL options.
      * @see http://guzzle.readthedocs.org/en/latest/clients.html#request-options
      * @var array
      */
     protected $optional_http_client_headers = [];
+
+    /**
+     * Optioanlly enable debug mode to echo out the response XML.
+     * @var boolean 
+     */
+    protected $debug_mode = false;
 
     public function __construct($credentials = null)
     {
@@ -119,7 +125,14 @@ class Senitor
         $response = new XmwsRequest(new Transmission(
             $this->credentials, $this->module, $this->endpoint, $this->data), array_merge($this->getClientHeaders(), $this->optional_http_client_headers)
         );
-        $response->send();
+        $xmws_response = $response->send();
+
+        if ($this->debug_mode) {
+            echo (string) $xmws_response;
+        }
+        
+        // Cast to an XMWS response object and return it...
+        
     }
 
     /**
@@ -134,6 +147,16 @@ class Senitor
                 'Accept' => 'application/xml',
             ]
         ];
+    }
+
+    /**
+     * Turn debug mode on!
+     * @return \Ballen\Senitor\Senitor
+     */
+    public function debugMode()
+    {
+        $this->debug_mode = true;
+        return $this;
     }
 
     /**
