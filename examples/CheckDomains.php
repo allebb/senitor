@@ -22,7 +22,7 @@ $xmws_session->setCredentials(new Target($sentora['server'], $sentora['user'], $
         'verify' => false,
     ]);
 
-$xmws_session->debugMode();
+//$xmws_session->debugMode();
 
 $xmws_session->setRequestData([]);
 

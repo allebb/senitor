@@ -119,6 +119,7 @@ class Senitor
 
     /**
      * Dispatch the XMWS request and return the response object.
+     * @return \Ballen\Senitor\Entities\XmwsResponse
      */
     public final function send()
     {
@@ -128,11 +129,9 @@ class Senitor
         $xmws_response = $response->send();
 
         if ($this->debug_mode) {
-            echo (string) $xmws_response;
+            echo (string) $xmws_response->response()->getBody();
         }
-        
-        // Cast to an XMWS response object and return it...
-        
+        return $xmws_response;
     }
 
     /**

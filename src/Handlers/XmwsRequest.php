@@ -1,6 +1,7 @@
 <?php namespace Ballen\Senitor\Handlers;
 
 use Ballen\Senitor\Entities\Transmission;
+use Ballen\Senitor\Entities\XmwsResponse;
 use GuzzleHttp\Client;
 
 class XmwsRequest
@@ -89,8 +90,15 @@ class XmwsRequest
     {
         $this->initClient();
         $repsonse = $this->http_client->post($this->requestUri(), $this->requestOptions());
+        return new XmwsResponse($repsonse);
+    }
 
-        // We now need to cast this into our XMWSResponse object...
-        return $repsonse->getBody();
+    /**
+     * Provides a simple way in which to return the XML response as a string.
+     * @return string
+     */
+    public function getXmlResponse()
+    {
+        return $this->send()->response()->getBody();
     }
 }
