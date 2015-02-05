@@ -1,8 +1,7 @@
 <?php
 // We first load in the composer autoloader.
 require_once '../vendor/autoload.php';
-use Ballen\Senitor\Senitor;
-use Ballen\Senitor\Entities\Target;
+use Ballen\Senitor\SenitorFactory;
 
 /**
  * We'll load in the credentials from the _credentials.php file, so set them
@@ -14,17 +13,25 @@ require_once '_credentials.php';
  * An example of using Senitor to check the current status of services and the
  * server uptime.
  */
-$xmws_session = new Senitor();
 
-$xmws_session->setCredentials(new Target($sentora['server'], $sentora['user'], $sentora['pass'], $sentora['apikey']))
-    ->setModule('services')
-    ->setEndpoint('GetServiceStatus')
-    ->setHttpOptions([
-        'verify' => false,
-    ]);
+// Set custom cURL options such as ignore invalid SSL certs or forward proxy server config.
+$http_option = [
+    'verify' => false,
+];
 
-//$xmws_session->debugMode();
+// An example of using the SentoraFactory class for quicker and simpler instantiation of the class.
+$xmws_session = SenitorFactory::create($sentora['server'], $sentora['apikey'], $sentora['user'], $sentora['pass'], $http_options);
+
+// Set the module that you want to communicate with.
+$xmws_session->setModule('services');
+
+// Set the Endpoint - this can also be 
+$xmws_session->setEndpoint('GetServiceStatus');
+
+// Enable Debugging mode? - Will output the XML response from the Sentora server.
+$xmws_session->debugMode();
 
 $xmws_session->setRequestData([]);
 
+// Send the request!
 $xmws_session->send();
