@@ -26,7 +26,8 @@ class XmwsResponse
     public function __construct(HttpClientResponse $response)
     {
         $this->http_response_object = $response;
-        echo $this->checkErrors();
+        $this->checkErrors();
+        $this->contentToProperty();
     }
 
     /**
@@ -65,5 +66,44 @@ class XmwsResponse
             case 1107:
                 throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("Modular	web	service	not	found for this module.");
         }
+    }
+
+    /**
+     * Return the <content> data as an array.
+     * @return array
+     */
+    public function asArray()
+    {
+        return $this->xmws_content_array;
+    }
+
+    /**
+     * Returns the <content> data as a stdClass object.
+     * @return stdClass
+     */
+    public function asObject()
+    {
+        return $this->arrayToJson($this->xmws_content_array);
+    }
+
+    /**
+     * Converts the <content> section to an array and stores as an object property.
+     */
+    private function contentToProperty()
+    {
+        $xml_response = $this->http_response_object->xml();
+        if (isset($xml_response['content'])) {
+            $this->xmws_content_array = $xml_response['content'];
+        }
+    }
+
+    /**
+     * Converts an array to a JSON stdClass object.
+     * @param array $array The array to convert.
+     * @return stdClass
+     */
+    private function arrayToJson(array $array)
+    {
+        return json_decode(json_encode($array));
     }
 }
