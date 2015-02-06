@@ -136,4 +136,13 @@ class XmwsResponse
     {
         return json_decode(json_encode($array));
     }
+
+    /**
+     * Return the raw response if the __toString() method is invoked.
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->raw();
+    }
 }
