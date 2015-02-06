@@ -129,7 +129,7 @@ class Senitor
         $xmws_response = $response->send();
 
         if ($this->debug_mode) {
-            echo (string) $xmws_response->response()->getBody();
+            echo (string) $xmws_response->raw();
         }
         return $xmws_response;
     }

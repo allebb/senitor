@@ -27,6 +27,7 @@ class XmwsResponse
     {
         $this->http_response_object = $response;
         $this->checkErrors();
+        $this->responseCodeToProperty();
         $this->contentToProperty();
     }
 
@@ -69,6 +70,15 @@ class XmwsResponse
     }
 
     /**
+     * Return the XMWS API status code.
+     * @return int
+     */
+    public function statusCode()
+    {
+        return $this->xmws_response_code;
+    }
+
+    /**
      * Return the <content> data as an array.
      * @return array
      */
@@ -84,6 +94,26 @@ class XmwsResponse
     public function asObject()
     {
         return $this->arrayToJson($this->xmws_content_array);
+    }
+
+    /**
+     * Return the raw XML response from the web service.
+     * @return string
+     */
+    public function raw()
+    {
+        return $this->http_response_object->getBody();
+    }
+
+    /**
+     * Converts the <response> tag value to an integer and stores as an object property.
+     */
+    private function responseCodeToProperty()
+    {
+        $xml_response = $this->http_response_object->xml();
+        if (isset($xml_response['response'])) {
+            $this->xmws_response_code = (int) $xml_response['response'];
+        }
     }
 
     /**
