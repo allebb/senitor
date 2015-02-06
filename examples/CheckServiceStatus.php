@@ -15,7 +15,7 @@ require_once '_credentials.php';
  */
 
 // Set custom cURL options such as ignore invalid SSL certs or forward proxy server config.
-$http_option = [
+$http_options = [
     'verify' => false,
 ];
 
