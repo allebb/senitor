@@ -1,7 +1,6 @@
 <?php namespace Ballen\Senitor\Handlers;
 
 use Ballen\Senitor\Entities\Transmission;
-use Ballen\Senitor\Entities\XmwsResponse;
 use GuzzleHttp\Client;
 
 class XmwsRequest

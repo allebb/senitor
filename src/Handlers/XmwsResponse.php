@@ -1,4 +1,4 @@
-<?php namespace Ballen\Senitor\Entities;
+<?php namespace Ballen\Senitor\Handlers;
 
 use GuzzleHttp\Message\Response as HttpClientResponse;
 
