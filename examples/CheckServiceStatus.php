@@ -36,4 +36,8 @@ $xmws_session->setRequestData([]);
 // Send the request!
 $response = $xmws_session->send();
 
-var_dump($response->asArray());
+// See the entire response data as a stdClass.
+var_dump($response->asObject());
+
+// Return a specific status for a service (in this example, is the FTP server running?)
+var_dump($response->asObject()->portstatus->ftp);
