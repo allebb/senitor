@@ -102,7 +102,7 @@ class XmwsResponse
      */
     public function asJson()
     {
-        return json_encode($this->arrayToJson((array) $this->http_response_object->xml()));
+        return json_encode($this->asObject());
     }
 
     /**
@@ -152,6 +152,6 @@ class XmwsResponse
      */
     public function __toString()
     {
-        return $this->raw();
+        return $this->asText();
     }
 }
