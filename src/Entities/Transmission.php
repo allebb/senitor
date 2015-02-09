@@ -6,10 +6,34 @@ use Ballen\Senitor\Entities\MessageBag;
 class Transmission
 {
 
+    /**
+     * The generated XML transmission message.
+     * @var string
+     */
     private $transmission;
+
+    /**
+     * The module name of which we will send the 'transmission' to.
+     * @var string
+     */
     private $module;
+
+    /**
+     * The module's web service method to call.
+     * @var string
+     */
     private $endpoint;
+
+    /**
+     * The XMWS/Sentora Server target object.
+     * @var \Ballen\Senitor\Entities\Target
+     */
     private $target;
+
+    /**
+     * The <content> tag data (as an XML string).
+     * @var string 
+     */
     private $content;
 
     /**
