@@ -33,12 +33,13 @@ $xmws_session->setEndpoint('GetServiceStatus');
 
 $xmws_session->setRequestData([]);
 
-// Send the request!
+// Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();
 
 // See the entire response data as a stdClass.
 var_dump($response->asObject());
 
+// Lets generate a JSON representation of the response data.
 var_dump($response->asJson());
 
 // Return a specific status for a service (in this example, is the FTP server running?)
