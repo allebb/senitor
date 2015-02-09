@@ -97,10 +97,19 @@ class XmwsResponse
     }
 
     /**
+     * Return the JSON representation of the response from the web service.
+     * @return string
+     */
+    public function asJson()
+    {
+        return json_encode($this->arrayToJson((array) $this->http_response_object->xml()));
+    }
+
+    /**
      * Return the raw XML response from the web service.
      * @return string
      */
-    public function raw()
+    public function asText()
     {
         return $this->http_response_object->getBody();
     }
