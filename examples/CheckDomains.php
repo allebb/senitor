@@ -22,8 +22,31 @@ $xmws_session->setCredentials(new Target($sentora['server'], $sentora['user'], $
         'verify' => false,
     ]);
 
-//$xmws_session->debugMode();
+// We make the request to the server and return the response object.
+$domains = $xmws_session->send();
 
-$xmws_session->setRequestData([]);
+// Check the repsonse output with a simple var_dump() call:
+//var_dump($domains->asJson());
 
-$xmws_session->send();
+// Lets create an HTML table to contain our results.
+$domains_html = "<h1>Domains</h1>"
+    . "<table>"
+    . "<tr><th>Domain ID</th><th>Domain name</th><th>Enabled?</th></tr>";
+
+// Now we can iterate over each of the domains on the server:
+foreach ($domains->asObject()->domain as $domain) {
+
+    // Check if the domain active?
+    $enabled = 'No';
+    if ($domain->active == "1") {
+        $enabled = 'Yes';
+    }
+
+    // Output the HTML table row syntax
+    $domains_html .= "<tr><td>{$domain->id}</td><td><a href=\"http://{$domain->domain}\" target=\"_blank\">{$domain->domain}</a></td><td>{$enabled}</td></tr>" . PHP_EOL;
+}
+$domains_html .= "</table>";
+
+// Now lets print out the HTML table...
+echo $domains_html;
+

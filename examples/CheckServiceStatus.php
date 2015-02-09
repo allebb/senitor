@@ -15,6 +15,7 @@ require_once '_credentials.php';
  */
 
 // Set custom cURL options such as ignore invalid SSL certs or forward proxy server config.
+// See: http://guzzle.readthedocs.org/en/latest/clients.html#request-options
 $http_options = [
     'verify' => false,
 ];
@@ -30,8 +31,6 @@ $xmws_session->setEndpoint('GetServiceStatus');
 
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
 //$xmws_session->debugMode();
-
-$xmws_session->setRequestData([]);
 
 // Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();
