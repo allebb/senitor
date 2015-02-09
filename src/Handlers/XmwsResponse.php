@@ -121,7 +121,7 @@ class XmwsResponse
      */
     private function contentToProperty()
     {
-        $xml_response = $this->http_response_object->xml();
+        $xml_response = json_decode(json_encode((array) $this->http_response_object->xml()), 1);
         if (isset($xml_response['content'])) {
             $this->xmws_content_array = $xml_response['content'];
         }
