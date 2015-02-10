@@ -23,6 +23,12 @@ class XmwsResponse
      */
     protected $xmws_content_array;
 
+    /**
+     * The string of XML data contained in the <content> tag.
+     * @var string
+     */
+    protected $xmws_content_string;
+
     public function __construct(HttpClientResponse $response)
     {
         $this->http_response_object = $response;
@@ -55,7 +61,7 @@ class XmwsResponse
 
         switch ($response_code) {
             case 1102:
-                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("The XMWS API module was not found on the target server.");
+                throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("The XMWS API module action was not found on the target server.");
             case 1103:
                 throw new \Ballen\Senitor\Exceptions\XmwsErrorResponse("Server	API	key	validation	failed.");
             case 1104:
@@ -106,10 +112,23 @@ class XmwsResponse
     }
 
     /**
+     * Return the plain text response (useful for responses with out tags)
+     * @return string
+     */
+    public function asString()
+    {
+        if (isset($this->asArray()[0])) {
+            return $this->asArray()[0];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Return the raw XML response from the web service.
      * @return string
      */
-    public function asText()
+    public function responseContent()
     {
         return $this->http_response_object->getBody();
     }
@@ -152,6 +171,6 @@ class XmwsResponse
      */
     public function __toString()
     {
-        return $this->asText();
+        return $this->responseContent();
     }
 }

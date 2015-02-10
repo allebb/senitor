@@ -128,9 +128,8 @@ class Senitor
             $this->credentials, $this->module, $this->endpoint, $this->data), array_merge($this->getClientHeaders(), $this->optional_http_client_headers)
         );
         $xmws_response = $response->send();
-
         if ($this->debug_mode) {
-            echo (string) $xmws_response->asText();
+            echo (string) $xmws_response->responseContent();
         }
         return $xmws_response;
     }

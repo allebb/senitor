@@ -22,18 +22,22 @@ $xmws_session = SenitorFactory::create($sentora['server'], $sentora['apikey'], $
 $xmws_session->setModule('manage_clients');
 
 // Set the Endpoint - this can also be 
-$xmws_session->setEndpoint('UsernameExits');
+$xmws_session->setEndpoint('UsernameExsits');
 
 // Set the request data, for this we are going to create the user with the following data.
 $xmws_session->setRequestData([
-    'username' => 'jblogs',
+    'username' => 'ballen',
 ]);
 
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
 //$xmws_session->debugMode();
-
 // Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();
 
 // For demonstration purposes lets just var_dump() the contents as an array...
-var_dump($response->asArray());
+if ($response->asString() == true) {
+    // The username exists!
+    echo "The username already exists on the Sentora server!";
+} else {
+    echo "The username is available!";
+}
