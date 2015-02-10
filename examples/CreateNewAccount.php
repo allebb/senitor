@@ -22,7 +22,7 @@ $xmws_session = SenitorFactory::create($sentora['server'], $sentora['apikey'], $
 $xmws_session->setModule('manage_clients');
 
 // Set the Endpoint - this can also be 
-$xmws_session->setEndpoint('CreateNewClient');
+$xmws_session->setEndpoint('CreateClient');
 
 // Set the request data, for this we are going to create the user with the following data.
 $xmws_session->setRequestData(

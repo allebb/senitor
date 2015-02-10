@@ -83,6 +83,7 @@ class MessageBag
      */
     public final function getXml()
     {
+        $this->buildXml();
         return $this->xml;
     }
 
@@ -110,8 +111,8 @@ class MessageBag
      */
     private function generateXml()
     {
-        $xml_block = (string) null;
-        if (!empty($this->items)) {
+        $xml_block = (string) "";
+        if (count($this->items) > 0) {
             foreach ($this->items as $key => $item) {
                 $xml_block .= "<{$key}>$item</{$key}>";
             }
