@@ -30,7 +30,7 @@ $xmws_session->setRequestData(
         'resellerid' => 1,
         'username' => 'jbloggs',
         'packageid' => 1,
-        'groupid' => 2,
+        'groupid' => 1,
         'fullname' => 'Joe Bloggs',
         'email' => 'jbloggs@example.com',
         'address' => '1 Example Street, London',
@@ -43,7 +43,7 @@ $xmws_session->setRequestData(
 ]);
 
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
-$xmws_session->debugMode();
+//$xmws_session->debugMode();
 
 // Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();
