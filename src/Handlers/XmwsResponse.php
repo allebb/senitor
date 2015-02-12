@@ -99,7 +99,7 @@ class XmwsResponse
      */
     public function asObject()
     {
-        return $this->arrayToJson($this->xmws_content_array);
+        return $this->arrayToObject($this->xmws_content_array);
     }
 
     /**
@@ -156,13 +156,13 @@ class XmwsResponse
     }
 
     /**
-     * Converts an array to a JSON stdClass object.
+     * Converts an array to a stdClass object.
      * @param array $array The array to convert.
      * @return stdClass
      */
-    private function arrayToJson(array $array)
+    private function arrayToObject(array $array)
     {
-        return json_decode(json_encode($array));
+        return (object) $array;
     }
 
     /**
