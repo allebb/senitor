@@ -22,6 +22,8 @@ $xmws_session->setCredentials(new Target($sentora['server'], $sentora['user'], $
         'verify' => false,
     ]);
 
+$xmws_session->setRequestData([]);
+
 // We make the request to the server and return the response object.
 $domains = $xmws_session->send();
 

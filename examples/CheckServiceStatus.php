@@ -32,6 +32,8 @@ $xmws_session->setEndpoint('GetServiceStatus');
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
 //$xmws_session->debugMode();
 
+$xmws_session->setRequestData([]);
+
 // Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();
 

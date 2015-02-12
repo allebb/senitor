@@ -24,6 +24,8 @@ $xmws_session->setModule('manage_clients');
 // Set the Endpoint - this can also be 
 $xmws_session->setEndpoint('GetAllClients');
 
+$xmws_session->setRequestData([]);
+
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
 // $xmws_session->debugMode();
 

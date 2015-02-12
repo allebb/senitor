@@ -14,7 +14,7 @@ class MessageBag
      * @var array 
      */
     private $items = [];
-    
+
     /**
      * Generated XML tags with request data.
      * @var string
@@ -97,9 +97,6 @@ class MessageBag
     {
         if (!is_null($this->xml)) {
             throw new \Ballen\Senitor\Exceptions\XmlSetException("XML data already exists, reset the bag or utilise getXml() method.");
-        }
-        if (count($this->items) == 0) {
-            throw new \InvalidArgumentException("There are zero configuration items set, use addItem(), setItems() or setRaw() methods.");
         }
         $this->generateXml();
         return $this;

@@ -52,8 +52,8 @@ class Senitor
     {
         if ($credentials instanceof Target) {
             $this->credentials = $credentials;
+            $this->setRequestData([]);
         }
-        $this->setRequestData([]);
     }
 
     /**
