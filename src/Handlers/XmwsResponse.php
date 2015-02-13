@@ -162,7 +162,7 @@ class XmwsResponse
      */
     private function arrayToObject(array $array)
     {
-        return (object) $array;
+        return json_decode(json_encode($array), false);
     }
 
     /**
