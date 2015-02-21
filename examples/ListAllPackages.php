@@ -22,12 +22,12 @@ $xmws_session = SenitorFactory::create($sentora['server'], $sentora['apikey'], $
 $xmws_session->setModule('packages');
 
 // Set the Endpoint - this can also be 
-$xmws_session->setEndpoint('GetPackageId');
+$xmws_session->setEndpoint('GetAllPackages');
 
-$xmws_session->setRequestData(['pakagename' => 'flex']);
+$xmws_session->setRequestData([]);
 
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
-// $xmws_session->debugMode();
+//$xmws_session->debugMode();
 
 // Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();

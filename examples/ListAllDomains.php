@@ -36,7 +36,7 @@ $domains_html = "<h1>Domains</h1>"
     . "<tr><th>Domain ID</th><th>Domain name</th><th>Enabled?</th></tr>";
 
 // Now we can iterate over each of the domains on the server:
-foreach ($domains->asObject()->domain as $domain) {
+foreach ($domains->asObject() as $domain) {
 
     // Check if the domain active?
     $enabled = 'No';

@@ -118,7 +118,7 @@ class XmwsResponse
     public function asString()
     {
         if (isset($this->asArray()[0])) {
-            return $this->asArray()[0];
+            return $this->xmws_content_string;
         } else {
             return null;
         }
@@ -152,6 +152,7 @@ class XmwsResponse
         $xml_response = json_decode(json_encode((array) $this->http_response_object->xml()), 1);
         if (isset($xml_response['content'])) {
             $this->xmws_content_array = $xml_response['content'];
+            $this->xmws_content_string = $xml_response['content'];
         }
     }
 
