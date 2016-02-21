@@ -1,5 +1,18 @@
-<?php namespace Ballen\Senitor\Entities;
+<?php
 
+namespace Ballen\Senitor\Entities;
+
+/**
+ * Senitor
+ * 
+ * Senitor is a PHP API client for the Sentora Web Hosting Panel Web Service Layer (XMWS)
+ *
+ * @author Bobby Allen <ballen@bobbyallen.me>
+ * @license https://github.com/bobsta63/senitor/blob/master/LICENSE
+ * @link https://github.com/bobsta63/senitor
+ * @link http://www.bobbyallen.me
+ *
+ */
 class MessageBag
 {
 
@@ -78,10 +91,11 @@ class MessageBag
     }
 
     /**
-     * Resets the items and the xml data. Intended to be used to avoid the exception thrown by buildXml
+     * Resets the items and the XML data. Intended to be used to avoid the exception thrown by buildXml
      * @return void
      */
-    public function reset(){
+    public function reset()
+    {
         $this->items = [];
         $this->xml = null;
     }

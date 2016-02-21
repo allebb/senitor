@@ -1,8 +1,21 @@
-<?php namespace Ballen\Senitor;
+<?php
+
+namespace Ballen\Senitor;
 
 use Ballen\Senitor\Senitor;
 use Ballen\Senitor\Entities\Target;
 
+/**
+ * Senitor
+ * 
+ * Senitor is a PHP API client for the Sentora Web Hosting Panel Web Service Layer (XMWS)
+ *
+ * @author Bobby Allen <ballen@bobbyallen.me>
+ * @license https://github.com/bobsta63/senitor/blob/master/LICENSE
+ * @link https://github.com/bobsta63/senitor
+ * @link http://www.bobbyallen.me
+ *
+ */
 class SenitorFactory
 {
 

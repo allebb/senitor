@@ -29,7 +29,6 @@ $domains = $xmws_session->send();
 
 // Check the repsonse output with a simple var_dump() call:
 //var_dump($domains->asJson());
-
 // Lets create an HTML table to contain our results.
 $domains_html = "<h1>Domains</h1>"
     . "<table>"

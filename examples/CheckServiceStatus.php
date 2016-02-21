@@ -13,7 +13,6 @@ require_once '_credentials.php';
  * An example of using Senitor to check the current status of services and the
  * server uptime.
  */
-
 // Set custom cURL options such as ignore invalid SSL certs or forward proxy server config.
 // See: http://guzzle.readthedocs.org/en/latest/clients.html#request-options
 $http_options = [

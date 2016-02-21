@@ -44,7 +44,6 @@ $xmws_session->setRequestData(
 
 // Enable Debugging mode? - Will output the XML response from the Sentora server.
 //$xmws_session->debugMode();
-
 // Send the request and lets get the response object so we can use it to output our results.
 $response = $xmws_session->send();
 
