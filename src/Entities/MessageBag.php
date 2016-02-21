@@ -78,6 +78,15 @@ class MessageBag
     }
 
     /**
+     * Resets the items and the xml data. Intended to be used to avoid the exception thrown by buildXml
+     * @return void
+     */
+    public function reset(){
+        $this->items = [];
+        $this->xml = null;
+    }
+
+    /**
      * Return the XML block for the Message Bag.
      * @return string The XML string.
      */
