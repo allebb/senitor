@@ -1,6 +1,5 @@
 {
     "name": "ballen/senitor",
-    "version": "1.0.0",
     "description": "Senitor is a PHP API client for the Sentora Web Hosting Panel Web Service Layer (XMWS)",
     "type": "library",
     "keywords": ["sentora", "zpanel", "xmws"],
